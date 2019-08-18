@@ -1,0 +1,4 @@
+alias(
+    name = "glslc",
+    actual = "@vulkan_sdk//:glslc",
+)
