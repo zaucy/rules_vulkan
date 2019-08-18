@@ -19,9 +19,9 @@ setup_7zip()
 
 http_archive(
     name = "com_github_zaucy_rules_vulkan",
-    strip_prefix = "rules_vulkan-02e5dda19958cc8e757873d3c843bb3604842f79",
-    url = "https://github.com/zaucy/rules_vulkan/archive/02e5dda19958cc8e757873d3c843bb3604842f79.zip",
-    sha256 = "108a165729cd9ef9d85488fd6fafe1e9c286a51dee4ce7f5d0de3e372b5ad778",
+    strip_prefix = "rules_vulkan-8fe158da98cacbbfd4a7b70f4a3673c1b31cc09e",
+    url = "https://github.com/zaucy/rules_vulkan/archive/8fe158da98cacbbfd4a7b70f4a3673c1b31cc09e.zip",
+    sha256 = "823226b46822fe8fb35cebbbc5355ed0308fcc314c248b8e3e48284686df7c52",
 )
 
 load("@com_github_zaucy_rules_vulkan//:repo.bzl", "vulkan_repos")
