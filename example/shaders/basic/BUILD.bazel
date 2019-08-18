@@ -1,0 +1,11 @@
+load("@com_github_zaucy_rules_vulkan//:defs.bzl", "shader_binary")
+
+shader_binary(
+    name = "basic_vert",
+    srcs = ["basic.vert"],
+)
+
+shader_binary(
+    name = "basic_frag",
+    srcs = ["basic.frag"],
+)
