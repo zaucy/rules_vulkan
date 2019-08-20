@@ -1,3 +1,9 @@
 package(default_visibility = ["//visibility:public"])
 
-exports_files(["defs.bzl", "repo.bzl"])
+exports_files([
+    "defs.bzl",
+    "repo.bzl",
+    "vulkan_sdk_linux.BUILD",
+    "vulkan_sdk_macos.BUILD",
+    "vulkan_sdk_windows.BUILD",
+])

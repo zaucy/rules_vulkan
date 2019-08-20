@@ -22,7 +22,8 @@ _vulkan_sdk_well_knowns = {
 }
 
 def _vulkan_sdk_repo_impl(rctx):
-    common_executables = [
+    commonTargets = [
+        # Pre-built executables
         "glslangValidator",
         "glslc",
         "spirv-as",
@@ -32,59 +33,60 @@ def _vulkan_sdk_repo_impl(rctx):
         "spirv-opt",
         "spirv-remap",
         "spirv-val",
+
+        # C/C++ Libraries
+        "vulkan",
     ]
 
-    build_file_content = """
-# This file is generated
-package(default_visibility = ["//visibility:public"])
-"""
+    build_file_content = ""
 
-    for commonExec in common_executables:
-        commonExecVarName = commonExec.replace('-', '_')
+    for commonTarget in commonTargets:
+        commonTargetVarName = commonTarget.replace('-', '_')
         build_file_content += """
-_windows_{execVarName} = "@vulkan_sdk_windows//:Bin/{execName}.exe"
-_linux_{execVarName} = "@vulkan_sdk_linux//:bin/{execName}"
-_macos_{execVarName} = "@vulkan_sdk_macos//:bin/{execName}"
+_windows_{targetVarName} = "@vulkan_sdk_windows//:{targetName}"
+_linux_{targetVarName} = "@vulkan_sdk_linux//:{targetName}"
+_macos_{targetVarName} = "@vulkan_sdk_macos//:{targetName}"
 alias(
-    name = "{execName}",
+    name = "{targetName}",
+    visibility = ["//visibility:public"],
     actual = select({{
         # Windows
-        "@bazel_tools//src/conditions:windows": _windows_{execVarName},
-        "@bazel_tools//src/conditions:windows_msvc": _windows_{execVarName},
-        "@bazel_tools//src/conditions:windows_msys": _windows_{execVarName},
+        "@bazel_tools//src/conditions:windows": _windows_{targetVarName},
+        "@bazel_tools//src/conditions:windows_msvc": _windows_{targetVarName},
+        "@bazel_tools//src/conditions:windows_msys": _windows_{targetVarName},
 
         # Linux
-        "@bazel_tools//src/conditions:linux_x86_64": _linux_{execVarName},
+        "@bazel_tools//src/conditions:linux_x86_64": _linux_{targetVarName},
 
         # MacOS
-        "@bazel_tools//src/conditions:darwin": _macos_{execVarName},
-        "@bazel_tools//src/conditions:darwin_x86_64": _macos_{execVarName},
+        "@bazel_tools//src/conditions:darwin": _macos_{targetVarName},
+        "@bazel_tools//src/conditions:darwin_x86_64": _macos_{targetVarName},
     }}),
 )
-""".format(execName = commonExec, execVarName = commonExecVarName)
+""".format(targetName = commonTarget, targetVarName = commonTargetVarName)
 
     rctx.file("WORKSPACE", content = "workspace(name = \"vulkan_sdk\")\n")
     rctx.file("BUILD.bazel", build_file_content)
 
 _vulkan_sdk_repo = repository_rule(
     implementation = _vulkan_sdk_repo_impl,
-    attrs = {},
+    attrs = {
+        "version": attr.string(),
+    },
 )
 
 def vulkan_repos(version = "1.1.114.0"):
 
-    vulkan_sdk_info = _vulkan_sdk_well_knowns[version]
+    ws = "@com_github_zaucy_rules_vulkan//"
 
-    export_all_build_file_content = """
-exports_files(glob(["**/*"]), visibility = ["//visibility:public"])
-    """
+    vulkan_sdk_info = _vulkan_sdk_well_knowns[version]
 
     http_7z(
         name = "vulkan_sdk_windows",
         url = vulkan_sdk_info.windows.url,
         # strip_prefix = vulkan_sdk_info.windows.strip_prefix,
         sha256 = vulkan_sdk_info.windows.sha256,
-        build_file_content = export_all_build_file_content,
+        build_file = ws + ":vulkan_sdk_windows.BUILD",
     )
 
     http_archive(
@@ -92,7 +94,7 @@ exports_files(glob(["**/*"]), visibility = ["//visibility:public"])
         url = vulkan_sdk_info.linux.url,
         strip_prefix = vulkan_sdk_info.linux.strip_prefix,
         sha256 = vulkan_sdk_info.linux.sha256,
-        build_file_content = export_all_build_file_content,
+        build_file = ws + ":vulkan_sdk_linux.BUILD",
     )
 
     http_archive(
@@ -100,7 +102,7 @@ exports_files(glob(["**/*"]), visibility = ["//visibility:public"])
         url = vulkan_sdk_info.macos.url,
         strip_prefix = vulkan_sdk_info.macos.strip_prefix,
         sha256 = vulkan_sdk_info.macos.sha256,
-        build_file_content = export_all_build_file_content,
+        build_file = ws + ":vulkan_sdk_macos.BUILD",
     )
 
-    _vulkan_sdk_repo(name = "vulkan_sdk")
+    _vulkan_sdk_repo(name = "vulkan_sdk", version = version)
