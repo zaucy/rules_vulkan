@@ -53,7 +53,6 @@ alias(
         # Windows
         "@bazel_tools//src/conditions:windows": _windows_{targetVarName},
         "@bazel_tools//src/conditions:windows_msvc": _windows_{targetVarName},
-        "@bazel_tools//src/conditions:windows_msys": _windows_{targetVarName},
 
         # Linux
         "@bazel_tools//src/conditions:linux_x86_64": _linux_{targetVarName},
