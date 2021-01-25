@@ -2,6 +2,23 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@com_github_zaucy_rules_7zip//:repo.bzl", "http_7z")
 
 _vulkan_sdk_well_knowns = {
+    "1.2.162.1": struct(
+        windows = struct(
+            url = "https://sdk.lunarg.com/sdk/download/1.2.162.1/windows/VulkanSDK-1.2.162.1-Installer.exe",
+            strip_prefix = "",
+            sha256 = "ada71bb25f5775c648048d22185d65c0bf49678ac1060e9fa79edcafe9816440",
+        ),
+        linux = struct(
+            url = "https://sdk.lunarg.com/sdk/download/1.2.162.1/linux/vulkansdk-linux-x86_64-1.2.162.1.tar.gz",
+            strip_prefix = "1.2.162.1/x86_64",
+            sha256 = "8314c1b000ed3f18f9e3c1f32c496dd3e654662249861371aa1724edef809177",
+        ),
+        macos = struct(
+            url = "https://sdk.lunarg.com/sdk/download/1.2.162.1/mac/vulkansdk-macos-1.2.162.1.tar.gz",
+            strip_prefix = "vulkansdk-macos-1.2.162.1/macOS",
+            sha256 = "2781c334997598c2828d8a3368aef7b7c94a25204c90d5503396e40c7a03fd5c",
+        ),
+    ),
     "1.1.114.0": struct(
         windows = struct(
             url = "https://sdk.lunarg.com/sdk/download/1.1.114.0/windows/VulkanSDK-1.1.114.0-Installer.exe",
@@ -18,7 +35,7 @@ _vulkan_sdk_well_knowns = {
             strip_prefix = "vulkansdk-macos-1.1.114.0/macOS",
             sha256 = "db5df93d10b7f689daad9a455baa4eeacb36826edc8270b45585559a4fbb5569",
         ),
-    )
+    ),
 }
 
 def _vulkan_sdk_repo_impl(rctx):
@@ -41,7 +58,7 @@ def _vulkan_sdk_repo_impl(rctx):
     build_file_content = ""
 
     for commonTarget in commonTargets:
-        commonTargetVarName = commonTarget.replace('-', '_')
+        commonTargetVarName = commonTarget.replace("-", "_")
         build_file_content += """
 _windows_{targetVarName} = "@vulkan_sdk_windows//:{targetName}"
 _linux_{targetVarName} = "@vulkan_sdk_linux//:{targetName}"
@@ -74,8 +91,7 @@ _vulkan_sdk_repo = repository_rule(
     },
 )
 
-def vulkan_repos(version = "1.1.114.0"):
-
+def vulkan_repos(version = "1.2.162.1"):
     ws = "@com_github_zaucy_rules_vulkan//"
 
     vulkan_sdk_info = _vulkan_sdk_well_knowns[version]

@@ -21,7 +21,7 @@ alias(
 )
 
 alias(
-    name = "spriv-cross", 
+    name = "spriv-cross",
     actual = "bin/spriv-cross",
 )
 
@@ -47,13 +47,12 @@ alias(
 
 cc_import(
     name = "vulkan-1",
+    shared_library = "lib/libvulkan.so.1",
     visibility = ["//visibility:private"],
-    shared_library = "libvulkan.so.1",
 )
 
 cc_library(
     name = "vulkan",
-    strip_include_prefix = "include",
     hdrs = [
         "include/vulkan/vk_icd.h",
         "include/vulkan/vk_layer.h",
@@ -75,5 +74,6 @@ cc_library(
         "include/vulkan/vulkan_xlib.h",
         "include/vulkan/vulkan_xlib_xrandr.h",
     ],
+    strip_include_prefix = "include",
     deps = [":vulkan-1"],
 )
