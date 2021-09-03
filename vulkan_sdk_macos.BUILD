@@ -1,5 +1,7 @@
 package(default_visibility = ["//visibility:public"])
 
+exports_files(glob(["**/*"]))
+
 alias(
     name = "glslangValidator",
     actual = "bin/glslangValidator",
