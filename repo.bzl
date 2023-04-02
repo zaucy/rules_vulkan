@@ -14,9 +14,9 @@ _vulkan_sdk_well_knowns = {
             sha256 = "3bc06935f3363307daf68eb744e11e46d31f6b0a9e9f1d0d59271471ea27ad7c",
         ),
         macos = struct(
-            url = "https://vertexwahn.de/lfs/v1/vulkansdk-macos-1.2.162.1.zip", # Still using old version here
-            strip_prefix = "vulkansdk-macos-1.2.162.1/macOS",
-            sha256 = "2781c334997598c2828d8a3368aef7b7c94a25204c90d5503396e40c7a03fd5c",
+            url = "https://vertexwahn.de/lfs/v1/vulkansdk-macos-1.3.243.0.zip",
+            strip_prefix = "VulkanSDK/1.3.243.0/macOS",
+            sha256 = "6d769f313ce0e7f6bdd10dc207f88777d0774d2be65f574670fe462529f4dd11",
         ),
     ),
 }
