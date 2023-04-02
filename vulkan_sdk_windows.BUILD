@@ -57,27 +57,9 @@ cc_import(
 cc_library(
     name = "vulkan",
     strip_include_prefix = "Include",
-    hdrs = [
-        "Include/vulkan/vk_icd.h",
-        "Include/vulkan/vk_layer.h",
-        "Include/vulkan/vk_platform.h",
-        "Include/vulkan/vk_sdk_platform.h",
-        "Include/vulkan/vulkan.h",
-        "Include/vulkan/vulkan.hpp",
-        "Include/vulkan/vulkan_android.h",
-        "Include/vulkan/vulkan_core.h",
-        "Include/vulkan/vulkan_fuchsia.h",
-        "Include/vulkan/vulkan_ggp.h",
-        "Include/vulkan/vulkan_ios.h",
-        "Include/vulkan/vulkan_macos.h",
-        "Include/vulkan/vulkan_metal.h",
-        "Include/vulkan/vulkan_vi.h",
-        "Include/vulkan/vulkan_wayland.h",
-        "Include/vulkan/vulkan_win32.h",
-        "Include/vulkan/vulkan_xcb.h",
-        "Include/vulkan/vulkan_xlib.h",
-        "Include/vulkan/vulkan_xlib_xrandr.h",
-    ],
+    hdrs = glob([
+        "Include/**/*.h",
+    ]),
     deps = [":vulkan-1"],
 )
 
