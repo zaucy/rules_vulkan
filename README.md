@@ -8,13 +8,13 @@ rules_vulkan relies on [rules_7zip](https://github.com/zaucy/rules_7zip) for ext
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
-    name = "com_github_zaucy_rules_7zip",
+    name = "rules_7zip",
     strip_prefix = "rules_7zip-e95ba876db445cf2c925c02c4bc18ed37a503fd8",
     url = "https://github.com/zaucy/rules_7zip/archive/e95ba876db445cf2c925c02c4bc18ed37a503fd8.zip",
     sha256 = "b66e1c712577b0c029d4c94228dba9c8aacdcdeb88c3b1eeeffd00247ba5a856",
 )
 
-load("@com_github_zaucy_rules_7zip//:setup.bzl", "setup_7zip")
+load("@rules_7zip//:setup.bzl", "setup_7zip")
 
 setup_7zip()
 

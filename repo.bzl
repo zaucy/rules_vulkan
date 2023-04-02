@@ -1,5 +1,5 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("@com_github_zaucy_rules_7zip//:repo.bzl", "http_7z")
+load("@rules_7zip//:repo.bzl", "http_7z")
 
 _vulkan_sdk_well_knowns = {
     "1.3.243.0": struct(
