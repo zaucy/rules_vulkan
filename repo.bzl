@@ -2,38 +2,21 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@com_github_zaucy_rules_7zip//:repo.bzl", "http_7z")
 
 _vulkan_sdk_well_knowns = {
-    "1.2.162.1": struct(
+    "1.3.243.0": struct(
         windows = struct(
-            url = "https://sdk.lunarg.com/sdk/download/1.2.162.1/windows/VulkanSDK-1.2.162.1-Installer.exe",
+            url = "https://sdk.lunarg.com/sdk/download/1.3.243.0/windows/VulkanSDK-1.3.243.0-Installer.exe",
             strip_prefix = "",
-            sha256 = "ada71bb25f5775c648048d22185d65c0bf49678ac1060e9fa79edcafe9816440",
+            sha256 = "a45954b5f0ae682d43268df6e548168de58809240efb021f52531a631760caaf",
         ),
         linux = struct(
-            url = "https://sdk.lunarg.com/sdk/download/1.2.162.1/linux/vulkansdk-linux-x86_64-1.2.162.1.tar.gz",
-            strip_prefix = "1.2.162.1/x86_64",
-            sha256 = "8314c1b000ed3f18f9e3c1f32c496dd3e654662249861371aa1724edef809177",
+            url = "https://sdk.lunarg.com/sdk/download/1.3.243.0/linux/vulkansdk-linux-x86_64-1.3.243.0.tar.gz",
+            strip_prefix = "1.3.243.0/x86_64",
+            sha256 = "3bc06935f3363307daf68eb744e11e46d31f6b0a9e9f1d0d59271471ea27ad7c",
         ),
         macos = struct(
-            url = "https://sdk.lunarg.com/sdk/download/1.2.162.1/mac/vulkansdk-macos-1.2.162.1.tar.gz",
+            url = "https://vertexwahn.de/lfs/v1/vulkansdk-macos-1.2.162.1.zip", # Still using old version here
             strip_prefix = "vulkansdk-macos-1.2.162.1/macOS",
             sha256 = "2781c334997598c2828d8a3368aef7b7c94a25204c90d5503396e40c7a03fd5c",
-        ),
-    ),
-    "1.1.114.0": struct(
-        windows = struct(
-            url = "https://sdk.lunarg.com/sdk/download/1.1.114.0/windows/VulkanSDK-1.1.114.0-Installer.exe",
-            strip_prefix = "",
-            sha256 = "6233e3095b67b883a55b4fa61fd0376feecb1de1e0a7b3962fa7a85cdd0e663f",
-        ),
-        linux = struct(
-            url = "https://sdk.lunarg.com/sdk/download/1.1.114.0/linux/vulkansdk-linux-x86_64-1.1.114.0.tar.gz",
-            strip_prefix = "1.1.114.0/x86_64",
-            sha256 = "796d3eedea9d2f5fd0720e5ebd9cc6072c95d5e958abea6d07b121db3973e968",
-        ),
-        macos = struct(
-            url = "https://sdk.lunarg.com/sdk/download/1.1.114.0/mac/vulkansdk-macos-1.1.114.0.tar.gz",
-            strip_prefix = "vulkansdk-macos-1.1.114.0/macOS",
-            sha256 = "db5df93d10b7f689daad9a455baa4eeacb36826edc8270b45585559a4fbb5569",
         ),
     ),
 }
@@ -75,7 +58,7 @@ alias(
         "@bazel_tools//src/conditions:linux_x86_64": _linux_{targetVarName},
 
         # MacOS
-        "@bazel_tools//src/conditions:darwin": _macos_{targetVarName},
+        #"@bazel_tools//src/conditions:darwin": _macos_{targetVarName},
         "@bazel_tools//src/conditions:darwin_x86_64": _macos_{targetVarName},
     }}),
 )
@@ -91,7 +74,7 @@ _vulkan_sdk_repo = repository_rule(
     },
 )
 
-def vulkan_repos(version = "1.2.162.1"):
+def vulkan_repos(version = "1.3.243.0"):
     ws = "@com_github_zaucy_rules_vulkan//"
 
     vulkan_sdk_info = _vulkan_sdk_well_knowns[version]
