@@ -2,9 +2,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_7zip",
-    strip_prefix = "rules_7zip-e00b15d3cb76b78ddc1c15e7426eb1d1b7ddaa3e",
-    urls = ["https://github.com/zaucy/rules_7zip/archive/e00b15d3cb76b78ddc1c15e7426eb1d1b7ddaa3e.zip"],
-    sha256 = "fd9e99f6ccb9e946755f9bc444abefbdd1eedb32c372c56dcacc7eb486aed178",
+    strip_prefix = "rules_7zip-9addcf58cdc5022fa5188b5f270bc0c9bb240f46",
+    urls = ["https://github.com/zaucy/rules_7zip/archive/9addcf58cdc5022fa5188b5f270bc0c9bb240f46.zip"],
+    sha256 = "89db47017a95de6fc30acd0ff0b70c25e468a21b5e1286940feb21505854f28b",
 )
 
 load("@rules_7zip//:setup.bzl", "setup_7zip")
