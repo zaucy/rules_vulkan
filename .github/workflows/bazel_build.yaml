@@ -1,9 +1,9 @@
 name: Bazel
 
 on:
-  pull_request: {}
-  push: {}
-
+  push:
+    branches:
+      - "**"
 jobs:
   build_and_test_ubuntu20:
     name: Linux Ubuntu 20.04 build <GCC 9.3.0>
