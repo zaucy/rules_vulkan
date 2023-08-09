@@ -7,7 +7,7 @@ on:
 jobs:
   build_and_test_ubuntu20:
     name: Linux Ubuntu 20.04 build <GCC 9.3.0>
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
