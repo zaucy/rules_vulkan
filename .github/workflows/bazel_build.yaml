@@ -1,9 +1,7 @@
 name: Bazel
 
-on:
-  push:
-    branches:
-      - "**"
+on: [push, pull_request]
+
 jobs:
   build_and_test_ubuntu20:
     name: Linux Ubuntu 20.04 build <GCC 9.3.0>
@@ -22,6 +20,7 @@ jobs:
         run: |
           cd example
           bazelisk build //...
+
   build_and_test_ubuntu22:
     name: Linux Ubuntu 22.04 build <GCC 11.2.0>
     runs-on: ubuntu-22.04
