@@ -2,7 +2,7 @@
 
 ## Installation
 
-rules_vulkan relies on [rules_7zip](https://github.com/zaucy/rules_7zip) for extracting the vulkan sdk on windows
+`rules_vulkan` relies on [`rules_7zip`](https://github.com/zaucy/rules_7zip) for extracting the Vulkan SDK on Windows.
 
 ```python
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
@@ -30,9 +30,12 @@ http_archive(
 load("@com_github_zaucy_rules_vulkan//:repo.bzl", "vulkan_repos")
 
 vulkan_repos()
-
 ```
+
+## Similar projects
+
+- [jadarve/rules_vulkan](https://github.com/jadarve/rules_vulkan)
 
 ## License
 
-This repository is licensed under MIT. Please note that rules_vulkan downloads the Vulkan SDK from [LunarG](https://www.lunarg.com/) which has it's own licenses and agreements you must adhere to.
+This repository is licensed under MIT. Please note that `rules_vulkan` downloads the Vulkan SDK from [LunarG](https://www.lunarg.com/) which has its own licenses and agreements you must adhere to.
