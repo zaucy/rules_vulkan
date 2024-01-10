@@ -58,8 +58,8 @@ alias(
         "@bazel_tools//src/conditions:linux_x86_64": _linux_{targetVarName},
 
         # MacOS
-        #"@bazel_tools//src/conditions:darwin": _macos_{targetVarName},
-        "@bazel_tools//src/conditions:darwin_x86_64": _macos_{targetVarName},
+        "@bazel_tools//src/conditions:darwin": _macos_{targetVarName},
+        #"@bazel_tools//src/conditions:darwin_x86_64": _macos_{targetVarName},
     }}),
 )
 """.format(targetName = commonTarget, targetVarName = commonTargetVarName)
