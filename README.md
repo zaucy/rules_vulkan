@@ -35,6 +35,7 @@ vulkan_repos()
 ## Similar projects
 
 - [jadarve/rules_vulkan](https://github.com/jadarve/rules_vulkan)
+- [mxpv/rules_vulkan](https://github.com/mxpv/rules_vulkan/)
 
 ## License
 
