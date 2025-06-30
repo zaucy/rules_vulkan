@@ -95,7 +95,7 @@ jobs:
   
   build_and_test_windows_2019:
     name: Windows 2019 <Visual Studio 2019>
-    runs-on: windows-2019
+    runs-on: windows-2025
 
     steps:
       - uses: actions/checkout@v4
@@ -113,7 +113,7 @@ jobs:
 
   build_and_test_windows_2022:
     name: Windows 2022 <Visual Studio 2022>
-    runs-on: windows-2022
+    runs-on: windows-2025
 
     steps:
       - uses: actions/checkout@v4
